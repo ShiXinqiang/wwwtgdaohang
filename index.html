@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TG搜索 - 2026最新全网 Telegram 资源与电报群组搜索引擎</title>
+    <meta name="description" content="专业的纸飞机搜索引擎，一键查找海量 Telegram 群组、频道、机器人及精准资源。提供安全、实时的 TG 搜索服务，包含影视大片、破解软件、吃瓜黑料、电报中文包等极速导航，告别无效链接。">
+    <meta name="keywords" content="TG搜索,Telegram搜索,电报群搜索,纸飞机资源,TG中文导航,极搜,新币搜,Telegram群组,电报汉化包,TG机器人">
+    <link rel="icon" href="https://i.ibb.co/gbbsQfVw/DJ-ZYH.png" type="image/png">
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .animate-pulse-fast { animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+        
+        /* 全局点击特效样式 */
+        .click-ripple {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.4); 
+            transform: translate(-50%, -50%) scale(0);
+            animation: ripple-animation 0.5s ease-out forwards;
+            pointer-events: none; 
+            z-index: 99999; 
+        }
+        @keyframes ripple-animation {
+            to { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-blue-200 flex flex-col min-h-screen">
+
+    <!-- 顶部导航 -->
+    <nav class="bg-white shadow-sm py-4 px-6 flex justify-between items-center sticky top-0 z-40">
+        <div class="text-xl font-black text-blue-600 flex items-center gap-1">
+            <svg class="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15.75-.45 2.53-.6 3.38-.15.85-.3 1.7-.45 2.55-.1.5-.3.7-.55.75-.55.05-1.05-.35-1.6-.7-.85-.55-1.35-.9-2.2-1.45-.95-.65-.35-1 .2-1.6.15-.2 2.6-2.4 2.65-2.6.01-.05.01-.15-.05-.2-.05-.05-.15-.05-.25-.01-.1.02-1.75 1.12-4.95 3.3-.45.3-.85.45-1.25.45-.45 0-1.3-.25-1.95-.45-.8-.25-1.43-.4-1.38-.85.03-.25.38-.5.1.55 1.03.45 2.03 2.18 2.63 3.1 1.05 1.63 3.55 2.78 4.73 2.53.53-.1.93-.45 1.13-1 .4-1.1.8-2.6 1.2-4.1.15-.65.25-1.15.15-1.35-.1-.2-.35-.25-.6-.15z"/></svg>
+            <span>TG智能资源搜</span>
+        </div>
+        <a href="https://t.me/jisou2?start=a_8438438776" target="_blank" class="text-xs bg-blue-50 text-blue-600 px-3 py-1.5 rounded-full font-medium">极速通道</a>
+    </nav>
+
+    <!-- 主体视觉区 -->
+    <header class="max-w-4xl mx-auto mt-10 px-4 text-center">
+        <h1 class="text-3xl md:text-5xl font-black tracking-tight text-gray-950 leading-tight mb-4">
+            探索 Telegram 的 <span class="text-blue-600">无尽优质资源</span>
+        </h1>
+        <p class="text-sm md:text-base text-gray-600 mb-8 max-w-2xl mx-auto">
+            找群组、找频道、搜资源？输入关键词，利用2026全新深度全网分布式技术，瞬间匹配全网最佳的电报搜索通道。
+        </p>
+
+        <!-- 核心交互搜索框 -->
+        <div class="max-w-xl mx-auto bg-white p-1.5 rounded-full shadow-md flex items-center border border-gray-200">
+            <input 
+                id="search-input"
+                type="text" 
+                placeholder="输入你想搜索的电影、软件、爆料群..." 
+                class="flex-1 px-4 py-3 rounded-l-full outline-none text-sm text-gray-800 bg-transparent"
+            />
+            <button 
+                onclick="startMockSearch()"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-full text-sm font-bold transition-all shadow-sm shrink-0"
+            >
+                全网检索
+            </button>
+        </div>
+        
+        <div id="search-loader" class="hidden mt-4 text-blue-600 text-xs font-semibold animate-pulse-fast">
+            正在通过全网分布式节点网络遍历检索，请稍候...
+        </div>
+    </header>
+
+    <!-- 伪装资源分类大厅 -->
+    <section class="max-w-4xl mx-auto mt-14 px-4">
+        <h2 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-1.5">
+            <span class="w-1.5 h-5 bg-blue-600 rounded-full"></span>
+            今日热门搜索分类导航
+        </h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div onclick="openCategoryModal('movie')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs hover:border-blue-500 transition cursor-pointer text-center">
+                <div class="text-2xl mb-1">🎬</div>
+                <div class="font-bold text-xs text-gray-900">影视大片</div>
+            </div>
+            
+            <div onclick="openCategoryModal('software')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs hover:border-blue-500 transition cursor-pointer text-center">
+                <div class="text-2xl mb-1">🛠️</div>
+                <div class="font-bold text-xs text-gray-900">软件工具</div>
+            </div>
+
+            <div onclick="openCategoryModal('chigua')" class="bg-white p-4 rounded-xl border border-amber-200 bg-amber-50/20 shadow-xs hover:border-amber-500 transition cursor-pointer text-center">
+                <div class="text-2xl mb-1">🔥</div>
+                <div class="font-bold text-xs text-gray-900 text-amber-700">吃瓜爆料</div>
+            </div>
+
+            <div onclick="openCategoryModal('crypto')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs hover:border-blue-500 transition cursor-pointer text-center">
+                <div class="text-2xl mb-1">🪙</div>
+                <div class="font-bold text-xs text-gray-900">币圈线报</div>
+            </div>
+
+            <div onclick="openCategoryModal('copywriting')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs hover:border-blue-500 transition cursor-pointer text-center">
+                <div class="text-2xl mb-1">✍️</div>
+                <div class="font-bold text-xs text-gray-900">精选文案馆</div>
+            </div>
+
+            <div onclick="openCategoryModal('novice')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs hover:border-blue-500 transition cursor-pointer text-center">
+                <div class="text-2xl mb-1">🔰</div>
+                <div class="font-bold text-xs text-gray-900">新手导航站</div>
+            </div>
+
+            <div onclick="openCategoryModal('resources')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs hover:border-blue-500 transition cursor-pointer text-center">
+                <div class="text-2xl mb-1">📂</div>
+                <div class="font-bold text-xs text-gray-900">资源频道页</div>
+            </div>
+
+            <div onclick="openCategoryModal('community')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs hover:border-blue-500 transition cursor-pointer text-center">
+                <div class="text-2xl mb-1">👥</div>
+                <div class="font-bold text-xs text-gray-900">精品社群导航</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 满血扩充版 SEO FAQ 模块 -->
+    <section class="max-w-4xl mx-auto mt-16 px-4 mb-8 border-t border-gray-200 pt-8 flex-1">
+        <h2 class="text-lg font-bold text-gray-900 mb-6">关于 TG 搜索与资源导航的常见问题解答 (FAQ)</h2>
+        <div class="space-y-4">
+            <div class="bg-white p-5 rounded-xl border border-gray-100">
+                <h3 class="font-bold text-sm text-gray-900 mb-2">Q1: 什么是 TG 搜索？如何通过网页版高效直达电报资源？</h3>
+                <p class="text-xs text-gray-600 leading-relaxed">A: TG 搜索是针对 Telegram (纸飞机) 跨国社交平台打造的高效信息检索系统。由于 Telegram 官方自带的搜索机制对华语关键词（如中文电影、软件名称）支持较弱，为了打破信息壁垒，我们整合了目前全网最具权威性的第三方搜索引擎（如新币搜、极搜等），帮助用户实现电报群组、高质量频道、智能机器人及各类文件的秒级精准直达。</p>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-gray-100">
+                <h3 class="font-bold text-sm text-gray-900 mb-2">Q2: 为什么在纸飞机应用内直接搜索常常找不到想要的电报群？</h3>
+                <p class="text-xs text-gray-600 leading-relaxed">A: 这是由于 Telegram 官方机制限制了非商业化公开群组的展示频次和深度。许多含有核心优质内容的电报群组、软件库、高清电影分享频道并不会出现在原生搜索结果的前列。通过本站推荐的智能分布式爬虫导航通道，您可以避开官方索引限制，探寻更深层次的暗网资源和隐藏频道。</p>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-gray-100">
+                <h3 class="font-bold text-sm text-gray-900 mb-2">Q3: 搜索出来的 Telegram 群组和频道链接是否安全可靠？</h3>
+                <p class="text-xs text-gray-600 leading-relaxed">A: 我们的合作收录引擎（包含极搜大厅和新币引擎）内置了严苛的实时死链清理和广告屠版群过滤机制，能最大限度降低用户遭遇钓鱼网站或诈骗广告的概率。但我们强烈建议，在加入任何陌生的公开电报群组或币圈交流群时，切勿轻易泄露个人隐私，涉及资金交易或虚拟货币转账时请保持极高的警惕。</p>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-gray-100">
+                <h3 class="font-bold text-sm text-gray-900 mb-2">Q4: 如何获取 Telegram 官方中文汉化包？</h3>
+                <p class="text-xs text-gray-600 leading-relaxed">A: 对于刚接触纸飞机的新手用户，纯英文界面可能会造成使用障碍。您可以通过我们页面上方的【新手导航站】直接获取安全无毒的官方中文汉化链接。只需在 Telegram 应用内一键点击并应用，即可瞬间将整个软件转换为简体中文或繁体中文，极大提升搜索和阅读体验。</p>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-gray-100">
+                <h3 class="font-bold text-sm text-gray-900 mb-2">Q5: 纸飞机 (Telegram) 资源搜索支持哪些类型的群组？</h3>
+                <p class="text-xs text-gray-600 leading-relaxed">A: 我们聚合的搜索引擎覆盖全网数千万条数据，支持极其广泛的分类。其中包括但不限于：最新高清院线影视群、苹果/安卓破解软件分享库、全网突发吃瓜黑料群、加密货币行情交流、精选短视频文案素材，以及各种同城交友和行业深度讨论社群。只要输入精准的关键词，即可无缝接驳所需资源。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 SEO 专属垫底文本 -->
+    <footer class="bg-gray-100 text-center py-8 px-4 mt-8">
+        <p class="text-[10px] text-gray-400 max-w-4xl mx-auto leading-relaxed">
+            免责声明：本页面为独立的 Telegram 资源导航与第三方搜索通道推荐平台，旨在为华语用户提供更便捷的 TG 群组与频道检索服务。本站不直接存储、托管或控制任何电报内容。所有链接均跳转至第三方搜索引擎（如极搜、新币搜等）。在畅享无边界信息交流的同时，请务必遵守当地法律法规，构建安全的网络环境。
+        </p>
+        <p class="text-[10px] text-gray-400 mt-2">© 2026 TG智能资源搜 - 您身边的全网资源聚合指南</p>
+    </footer>
+
+    <!-- 核心功能：统一分类资源弹窗 -->
+    <div id="category-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl p-5 max-w-sm w-full shadow-xl flex flex-col max-h-[85vh]">
+            
+            <div class="text-center mb-3">
+                <h3 id="modal-title" class="text-lg font-black text-gray-900">分类资源加载中</h3>
+                <p class="text-xs text-gray-500 mt-1">请选择下方您感兴趣的频道或群组直接加入</p>
+            </div>
+
+            <div id="dynamic-links-container" class="space-y-2 overflow-y-auto pr-1 mb-4 flex-1">
+                <!-- JS 会自动加载这里 -->
+            </div>
+
+            <div class="border-t border-gray-100 pt-3 space-y-2.5 mt-auto">
+                <p class="text-[10px] text-center text-gray-400 mb-2">没找到想要的？使用下方全网搜索引力引擎直达👇</p>
+                
+                <a href="https://t.me/xbso?start=a_8438438776" target="_blank" class="flex items-center justify-between bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 px-4 rounded-xl font-bold text-xs shadow-md active:scale-98 transition">
+                    <span>🔥 通道一：新币搜索引擎 (推荐)</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                </a>
+                <a href="https://t.me/jisou2?start=a_8438438776" target="_blank" class="flex items-center justify-between bg-gradient-to-r from-teal-600 to-teal-500 text-white py-3 px-4 rounded-xl font-bold text-xs shadow-md active:scale-98 transition">
+                    <span>⚡ 通道二：极搜官方顶级大厅</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                </a>
+            </div>
+
+            <button onclick="closeModal('category-modal')" class="mt-4 text-gray-400 hover:text-gray-600 text-xs tracking-wider text-center w-full">关闭窗口</button>
+        </div>
+    </div>
+
+    <!-- 全局多功能复用提示弹窗 (防空搜索 / 防空链接) -->
+    <div id="alert-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-xl p-5 max-w-xs w-full text-center shadow-lg border border-blue-100">
+            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h4 class="text-sm font-black text-gray-900 mb-1">系统提示</h4>
+            <p id="alert-text" class="text-xs text-gray-500 mb-4">请输入你想检索的关键词再开始噢！</p>
+            <button onclick="closeModal('alert-modal')" class="w-full bg-gray-900 hover:bg-gray-800 text-white py-2 rounded-lg font-bold text-xs transition">知 道 了</button>
+        </div>
+    </div>
+
+    <script>
+        // =========================================================================
+        // 链接配置区
+        // =========================================================================
+        const categoryData = {
+            "movie": {
+                modalTitle: "🎬 影视大片精选频道",
+                links: [
+                    { title: "▶️ 2026最新高清院线电影群", url: "https://t.me/你的真实链接放这里" },
+                    { title: "🍿 奈飞(Netflix)免费共享频道", url: "https://t.me/你的真实链接放这里" }
+                ]
+            },
+            "software": {
+                modalTitle: "🛠️ 软件工具库",
+                links: [
+                    { title: "📱 安卓iOS破解软件合集", url: "https://t.me/你的真实链接放这里" },
+                    { title: "💻 电脑端常用绿色版软件", url: "https://t.me/你的真实链接放这里" }
+                ]
+            },
+            "chigua": {
+                modalTitle: "🔥 全网吃瓜爆料中心",
+                links: [
+                    { title: "🍉 今日全网最新大瓜直达", url: "https://t.me/chgq" },
+                    { title: "📸 抖音热门网红内幕黑料", url: "https://t.me/dyqzh" }
+                ]
+            },
+            "crypto": {
+                modalTitle: "🪙 币圈线报与交流",
+                links: [
+                    { title: "📈 最新空投白名单线报", url: "https://t.me/你的真实链接放这里" }
+                ]
+            },
+            "copywriting": {
+                modalTitle: "✍️ 精选文案与音乐DJ",
+                links: [
+                    { title: "📖 朋友圈高赞文案音乐", url: "https://t.me/payydj" }, 
+                    { title: "🎵 彭于晏串烧音乐DJ", url: "https://t.me/payydj" }
+                ]
+            },
+            "novice": {
+                modalTitle: "🔰 新手防骗与汉化导航",
+                links: [
+                    { title: "🇨🇳 一键安装官方中文汉化包", url: "https://t.me/zy_dh/38" }
+                ]
+            },
+            "resources": {
+                modalTitle: "📂 综合资源盘点",
+                links: [
+                    { title: "📚 夸克/阿里网盘免费资源", url: "https://t.me/你的真实链接放这里" }
+                ]
+            },
+            "community": {
+                modalTitle: "👥 精品交流社群",
+                links: [
+                    { title: "💬 腊戌同城交友吹水群", url: "https://t.me/payydjj" }
+                ]
+            }
+        };
+
+        // 统一提示窗调用函数
+        function showAlert(msg) {
+            document.getElementById('alert-text').innerText = msg;
+            document.getElementById('alert-modal').classList.remove('hidden');
+        }
+
+        function startMockSearch() {
+            const val = document.getElementById('search-input').value.trim();
+            if (!val) {
+                showAlert('请输入你想检索的关键词再开始噢！');
+                return;
+            }
+            document.getElementById('search-loader').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('search-loader').classList.add('hidden');
+                document.getElementById('modal-title').innerText = `已为您锁定 "${val}"`;
+                document.getElementById('dynamic-links-container').innerHTML = `<p class="text-xs text-blue-600 font-medium bg-blue-50 py-2 rounded text-center">专属查询矩阵匹配完成，请选择下方顶级通道检索</p>`;
+                document.getElementById('category-modal').classList.remove('hidden');
+            }, 1400);
+        }
+
+        function openCategoryModal(categoryId) {
+            const data = categoryData[categoryId];
+            if (!data) return;
+
+            document.getElementById('modal-title').innerText = data.modalTitle;
+            const container = document.getElementById('dynamic-links-container');
+            container.innerHTML = ''; 
+
+            if (data.links.length > 0) {
+                data.links.forEach(linkObj => {
+                    const aTag = document.createElement('a');
+                    
+                    // 【核心升级】：智能检测空链接
+                    const isDummyLink = linkObj.url.includes('你的真实链接放这里') || linkObj.url === '' || linkObj.url === '#';
+                    
+                    if (isDummyLink) {
+                        // 如果是未配置的空链接，点击就弹窗提示，不跳转
+                        aTag.href = "javascript:void(0);";
+                        aTag.onclick = function() {
+                            showAlert('站长正在拼命为您整理该类目的优质资源，请先使用下方【通道一/二】进行全网搜索！');
+                        };
+                    } else {
+                        // 如果是真实的链接，正常跳转
+                        aTag.href = linkObj.url;
+                        aTag.target = "_blank";
+                    }
+
+                    aTag.className = "block bg-gray-50 hover:bg-blue-50 border border-gray-200 hover:border-blue-300 text-gray-800 py-2.5 px-3 rounded-lg text-xs font-bold transition mb-2 shadow-sm flex items-center justify-between";
+                    
+                    aTag.innerHTML = `
+                        <span class="truncate pr-2">${linkObj.title}</span>
+                        <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    `;
+                    container.appendChild(aTag);
+                });
+            } else {
+                container.innerHTML = `<p class="text-xs text-gray-400 text-center py-2">暂无专属资源，请使用下方搜索引擎</p>`;
+            }
+            document.getElementById('category-modal').classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        // 全局点击特效
+        document.addEventListener('click', function(e) {
+            const ripple = document.createElement('div');
+            ripple.className = 'click-ripple';
+            ripple.style.left = e.clientX + 'px';
+            ripple.style.top = e.clientY + 'px';
+            document.body.appendChild(ripple);
+            setTimeout(() => { ripple.remove(); }, 500);
+        });
+
+        // 防小白代码审计
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'i' || e.key === 'j')) || (e.ctrlKey && (e.key === 'U' || e.key === 'u'))) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
